@@ -30,9 +30,9 @@ namespace CSLight1
             float productScrapPrice = 5.6f;
             Console.Write("Сколько хотите купить металлолома: ");
             int playerCountScrap = Convert.ToInt32(Console.ReadLine());
-            bool havePlayerEnoughCoins = playerCountScrap * productScrapPrice >= playerCountCoins;
+            bool havePlayerEnoughCoins = (playerCountScrap * productScrapPrice) <= playerCountCoins;
             int havePlayerEnoughCoinsInt = Convert.ToInt32(havePlayerEnoughCoins);
-            playerCountScrap *= havePlayerEnoughCoinsInt * playerCountScrap;
+            playerCountScrap *= havePlayerEnoughCoinsInt;
             playerCountCoins -= Convert.ToInt32(havePlayerEnoughCoinsInt * playerCountScrap * productScrapPrice);
             productScrapСount -= havePlayerEnoughCoinsInt * playerCountScrap;
             Console.WriteLine("В магазине осталось: " + productScrapСount);
