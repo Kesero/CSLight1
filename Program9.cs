@@ -7,11 +7,9 @@ namespace CSLight1
         static void Main(string[] args)
         {
             int actualNumberSequence = 5;
-            int progressionNumber = 7;
-            while (actualNumberSequence < 100)
+            for (int i = actualNumberSequence; i <= 96; i += 7)
             {
-                Console.Write(actualNumberSequence + " ");
-                actualNumberSequence += progressionNumber;
+                Console.Write(i + " ");
             }
             Console.ReadKey();
         }
