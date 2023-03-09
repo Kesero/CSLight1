@@ -6,7 +6,7 @@ namespace CSLight1
     {
         static void Main(string[] args)
         {
-            float productCristallPrice = 5.6f;
+            float cristallPrice = 5.6f;
             Console.WriteLine("Добро пожаловать в магазин покупки кристаллов!");
             Console.Write("Введите кол-во монет персонажа: ");
             float playerCountCoins = Convert.ToSingle(Console.ReadLine());
