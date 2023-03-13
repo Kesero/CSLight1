@@ -7,10 +7,14 @@ namespace CSLight1
         static void Main(string[] args)
         {
             int actualNumberSequence = 5;
-            for (int i = actualNumberSequence; i <= 96; i += 7)
+            int lastNumberSequence = 96;
+            int coefficientProgressionSequence = 7;
+
+            for (int i = actualNumberSequence; i <= lastNumberSequence; i += coefficientProgressionSequence)
             {
                 Console.Write(i + " ");
             }
+
             Console.ReadKey();
         }
     }
