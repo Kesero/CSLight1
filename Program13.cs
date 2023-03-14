@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSLight1
 {
@@ -12,25 +15,13 @@ namespace CSLight1
             Console.Write("Введите значёк-обрамление вашего имени: ");
             string symbolFraming = Console.ReadLine();
             int numberSideFrameIndexes = 2;
-            int indexNameLine = 1;
+            string frame = "";
 
-
-            for (int i1 = 0; i1 < 3; i1++)
+            for (int i1 = 0; i1 < clientName.Length + numberSideFrameIndexes; i1++)
             {
-                if (i1 != indexNameLine)
-                {
-                    for (int i2 = 0; i2 < clientName.Length + numberSideFrameIndexes; i2++)
-                    {
-                        Console.Write(symbolFraming);
-                    }
-                }
-                else
-                {
-                    Console.Write(symbolFraming + clientName + symbolFraming);
-                }
-
-                Console.WriteLine();
+                frame += symbolFraming;
             }
+            Console.WriteLine(frame + "\n" + symbolFraming + clientName + symbolFraming + "\n" + frame);
 
             Console.ReadKey();
         }
