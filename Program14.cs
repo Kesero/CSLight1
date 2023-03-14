@@ -13,7 +13,7 @@ namespace CSLight1
             string passwordInput;
             string password = "1234";
             int maxCountAttempts = 3;
-            int numberInformationCalculationFifference = 1;
+            int numberInformationCalculationDifference = 1;
 
             for (int i = 0; i < maxCountAttempts; i++)
             {
@@ -28,7 +28,7 @@ namespace CSLight1
                 }
                 else
                 {
-                    int currentCountAttempts = maxCountAttempts - (i + numberInformationCalculationFifference);
+                    int currentCountAttempts = maxCountAttempts - (i + numberInformationCalculationDifference);
                     Console.WriteLine("Неверный пароль! Осталось попыток: " + currentCountAttempts);
                 }
             }
