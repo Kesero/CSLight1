@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSLight1
 {
@@ -10,12 +12,11 @@ namespace CSLight1
         {
             string passwordInput;
             string password = "1234";
-            int attemptСounter = 0;
             int maxCountAttempts = 3;
+            int numberInformationCalculationFifference = 1;
 
-            while (attemptСounter < maxCountAttempts)
+            for (int i = 0; i < maxCountAttempts; i++)
             {
-                attemptСounter++;
                 Console.Write("Введите пароль, чтобы увидеть секретное сообщение: ");
                 passwordInput = Console.ReadLine();
 
@@ -24,10 +25,10 @@ namespace CSLight1
                     Console.WriteLine("*секретное сообщение*");
                     Console.ReadKey();
                     break;
-                } 
+                }
                 else
                 {
-                    int currentCountAttempts = maxCountAttempts - attemptСounter;
+                    int currentCountAttempts = maxCountAttempts - (i + numberInformationCalculationFifference);
                     Console.WriteLine("Неверный пароль! Осталось попыток: " + currentCountAttempts);
                 }
             }
