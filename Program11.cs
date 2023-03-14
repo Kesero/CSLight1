@@ -25,7 +25,6 @@ namespace CSLight1
             string clientInput1 = "";
             string clientInput2 = "";
             int countСonversionsCurrency;
-            
             Console.Write("Сколько у вас RUB: ");
             float clientRub = Convert.ToSingle(Console.ReadLine());
             Console.Write("Сколько у вас EUR: ");
