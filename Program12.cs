@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSLight1
 {
@@ -7,17 +10,18 @@ namespace CSLight1
     {
         static void Main(string[] args)
         {
-            const string commandToExit = "esc";
-            const string commandToSetName = "setname";
-            const string commandToSetAge = "setage";
-            const string commandToSetPassword = "setpassword";
-            const string commandToViewProfile = "profile";
-            const string commandToHelp = "help";
+            const string CommandToSetName = "setname";
+            const string CommandToSetAge = "setage";
+            const string CommandToSetPassword = "setpassword";
+            const string CommandToViewProfile = "profile";
+            const string CommandToHelp = "help";
+
+            string commandToExit = "esc";
             string clientInput = "";
             string clientName = "";
             string clientAge = "";
             string clientPassword = "";
-            
+
             while (clientInput != commandToExit)
             {
                 Console.WriteLine("Список команд - *help*.");
@@ -27,31 +31,34 @@ namespace CSLight1
                 {
                     switch (clientInput)
                     {
-                        case commandToHelp:
+                        case CommandToHelp:
                             Console.WriteLine();
                             Console.WriteLine("----- Доступные команды -----");
                             Console.WriteLine(commandToExit + " - Выход");
-                            Console.WriteLine(commandToSetName + " - установить своё имя");
-                            Console.WriteLine(commandToSetAge + " - установить свой возраст");
-                            Console.WriteLine(commandToSetPassword + " - установить новый пароль");
-                            Console.WriteLine(commandToViewProfile + " - просмотреть свой профиль");
+                            Console.WriteLine(CommandToSetName + " - установить своё имя");
+                            Console.WriteLine(CommandToSetAge + " - установить свой возраст");
+                            Console.WriteLine(CommandToSetPassword + " - установить новый пароль");
+                            Console.WriteLine(CommandToViewProfile + " - просмотреть свой профиль");
                             Console.WriteLine("----- Доступные команды -----");
                             Console.WriteLine();
                             break;
-                        case commandToSetName:
+
+                        case CommandToSetName:
                             Console.Write("Выше имя: ");
                             clientName = Console.ReadLine();
                             break;
-                        case commandToSetAge:
+
+                        case CommandToSetAge:
                             Console.Write("Ваш возраст: ");
                             clientAge = Console.ReadLine();
                             break;
-                        case commandToSetPassword:
+
+                        case CommandToSetPassword:
                             Console.Write("Ваш новый пароль: ");
                             clientPassword = Console.ReadLine();
                             break;
-                        case commandToViewProfile:
 
+                        case CommandToViewProfile:
                             if ((clientName != "") && (clientAge != "") && (clientPassword != ""))
                             {
                                 Console.Write("Введите пароль: ");
@@ -71,8 +78,8 @@ namespace CSLight1
                                 {
                                     Console.WriteLine("Неверный пароль!");
                                 }
-                            } 
-                            else 
+                            }
+                            else
                             {
                                 if (clientName == "")
                                 {
@@ -91,6 +98,7 @@ namespace CSLight1
                             }
 
                             break;
+
                         default:
                             Console.WriteLine("Несуществующая команда.");
                             break;
