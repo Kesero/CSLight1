@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSLight1
 {
@@ -7,11 +10,11 @@ namespace CSLight1
     {
         static void Main(string[] args)
         {
-            Random rand = new Random();
+            Random random = new Random();
             int limitRandom = 101;
             int numberDivisionCondition1 = 3;
             int numberDivisionCondition2 = 5;
-            int randomLimit = rand.Next(limitRandom);
+            int randomLimit = random.Next(limitRandom);
             Console.WriteLine("Лимит: " + randomLimit);
             int amount = 0;
 
@@ -25,7 +28,7 @@ namespace CSLight1
             }
 
             Console.WriteLine();
-            Console.WriteLine("Cумма положительных чисел, делящихся на 3 и 5: " + amount);
+            Console.WriteLine("Cумма положительных чисел, делящихся на 3 или 5: " + amount);
             Console.ReadKey();
         }
     }
