@@ -27,82 +27,78 @@ namespace CSHomeWork1
                 Console.WriteLine($"Список команд - *{CommandToHelp}*.");
                 clientInput = Console.ReadLine();
 
-                if (clientInput != commandToExit)
+                switch (clientInput)
                 {
-                    switch (clientInput)
-                    {
-                        case CommandToHelp:
-                            Console.WriteLine();
-                            Console.WriteLine("----- Доступные команды -----");
-                            Console.WriteLine(commandToExit + " - Выход");
-                            Console.WriteLine(CommandToSetName + " - установить своё имя");
-                            Console.WriteLine(CommandToSetAge + " - установить свой возраст");
-                            Console.WriteLine(CommandToSetPassword + " - установить новый пароль");
-                            Console.WriteLine(CommandToViewProfile + " - просмотреть свой профиль");
-                            Console.WriteLine("----- Доступные команды -----");
-                            Console.WriteLine();
-                            break;
+                    case CommandToHelp:
+                        Console.WriteLine();
+                        Console.WriteLine("----- Доступные команды -----");
+                        Console.WriteLine(commandToExit + " - Выход");
+                        Console.WriteLine(CommandToSetName + " - установить своё имя");
+                        Console.WriteLine(CommandToSetAge + " - установить свой возраст");
+                        Console.WriteLine(CommandToSetPassword + " - установить новый пароль");
+                        Console.WriteLine(CommandToViewProfile + " - просмотреть свой профиль");
+                        Console.WriteLine("----- Доступные команды -----");
+                        Console.WriteLine();
+                        break;
 
-                        case CommandToSetName:
-                            Console.Write("Выше имя: ");
-                            clientName = Console.ReadLine();
-                            break;
+                    case CommandToSetName:
+                        Console.Write("Выше имя: ");
+                        clientName = Console.ReadLine();
+                        break;
 
-                        case CommandToSetAge:
-                            Console.Write("Ваш возраст: ");
-                            clientAge = Console.ReadLine();
-                            break;
+                    case CommandToSetAge:
+                        Console.Write("Ваш возраст: ");
+                        clientAge = Console.ReadLine();
+                        break;
 
-                        case CommandToSetPassword:
-                            Console.Write("Ваш новый пароль: ");
-                            clientPassword = Console.ReadLine();
-                            break;
+                    case CommandToSetPassword:
+                        Console.Write("Ваш новый пароль: ");
+                        clientPassword = Console.ReadLine();
+                        break;
 
-                        case CommandToViewProfile:
-                            if ((clientName != "") && (clientAge != "") && (clientPassword != ""))
+                    case CommandToViewProfile:
+                        if (clientName != "" && clientAge != "" && clientPassword != "")
+                        {
+                            Console.Write("Введите пароль: ");
+                            string inputPassword = Console.ReadLine();
+
+                            if (inputPassword == clientPassword)
                             {
-                                Console.Write("Введите пароль: ");
-                                string inputPassword = Console.ReadLine();
-
-                                if (inputPassword == clientPassword)
-                                {
-                                    Console.WriteLine();
-                                    Console.WriteLine("----- Ваш профиль -----");
-                                    Console.WriteLine("Имя: " + clientName);
-                                    Console.WriteLine("Возраст: " + clientAge);
-                                    Console.WriteLine("Актуальный пароль: " + clientPassword);
-                                    Console.WriteLine("----- Ваш профиль -----");
-                                    Console.WriteLine();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Неверный пароль!");
-                                }
+                                Console.WriteLine();
+                                Console.WriteLine("----- Ваш профиль -----");
+                                Console.WriteLine("Имя: " + clientName);
+                                Console.WriteLine("Возраст: " + clientAge);
+                                Console.WriteLine("Актуальный пароль: " + clientPassword);
+                                Console.WriteLine("----- Ваш профиль -----");
+                                Console.WriteLine();
                             }
                             else
                             {
-                                if (clientName == "")
-                                {
-                                    Console.WriteLine($"Для просмотра профиля вам нужно ввести своё имя *{CommandToSetName}*.");
-                                }
-
-                                if (clientAge == "")
-                                {
-                                    Console.WriteLine($"Для просмотра профиля вам нужно ввести свой возраст *{CommandToSetAge}*.");
-                                }
-
-                                if (clientPassword == "")
-                                {
-                                    Console.WriteLine($"Для просмотра профиля вам нужно ввести своё имя *{CommandToSetPassword}*.");
-                                }
+                                Console.WriteLine("Неверный пароль!");
+                            }
+                        }
+                        else
+                        {
+                            if (clientName == "")
+                            {
+                                Console.WriteLine($"Для просмотра профиля вам нужно ввести своё имя *{CommandToSetName}*.");
                             }
 
-                            break;
+                            if (clientAge == "")
+                            {
+                                Console.WriteLine($"Для просмотра профиля вам нужно ввести свой возраст *{CommandToSetAge}*.");
+                            }
 
-                        default:
-                            Console.WriteLine("Несуществующая команда.");
-                            break;
-                    }
+                            if (clientPassword == "")
+                            {
+                                Console.WriteLine($"Для просмотра профиля вам нужно ввести своё имя *{CommandToSetPassword}*.");
+                            }
+                        }
+                        break;
+
+                    default:
+                        Console.WriteLine("Несуществующая команда.");
+                        break;
                 }
             }
         }
