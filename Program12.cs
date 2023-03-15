@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSLight1
+namespace CSHomeWork1
 {
     internal class Program
     {
@@ -24,7 +24,7 @@ namespace CSLight1
 
             while (clientInput != commandToExit)
             {
-                Console.WriteLine("Список команд - *help*.");
+                Console.WriteLine($"Список команд - *{CommandToHelp}*.");
                 clientInput = Console.ReadLine();
 
                 if (clientInput != commandToExit)
@@ -83,17 +83,17 @@ namespace CSLight1
                             {
                                 if (clientName == "")
                                 {
-                                    Console.WriteLine("Для просмотра профиля вам нужно ввести своё имя *setname*.");
+                                    Console.WriteLine($"Для просмотра профиля вам нужно ввести своё имя *{CommandToSetName}*.");
                                 }
 
                                 if (clientAge == "")
                                 {
-                                    Console.WriteLine("Для просмотра профиля вам нужно ввести свой возраст *setage*.");
+                                    Console.WriteLine($"Для просмотра профиля вам нужно ввести свой возраст *{CommandToSetAge}*.");
                                 }
 
                                 if (clientPassword == "")
                                 {
-                                    Console.WriteLine("Для просмотра профиля вам нужно ввести свой новый пароль *setpassword*.");
+                                    Console.WriteLine($"Для просмотра профиля вам нужно ввести своё имя *{CommandToSetPassword}*.");
                                 }
                             }
 
