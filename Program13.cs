@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSLight1
+namespace CSHomeWork1
 {
     internal class Program
     {
@@ -14,15 +14,15 @@ namespace CSLight1
             string clientName = Console.ReadLine();
             Console.Write("Введите значёк-обрамление вашего имени: ");
             string symbolFraming = Console.ReadLine();
-            int numberSideFrameIndexes = 2;
+            string clientNameWithSideFrame = symbolFraming + clientName + symbolFraming;
             string frame = "";
 
-            for (int i1 = 0; i1 < clientName.Length + numberSideFrameIndexes; i1++)
+            for (int i = 0; i < clientNameWithSideFrame.Length; i++)
             {
                 frame += symbolFraming;
             }
-            Console.WriteLine(frame + "\n" + symbolFraming + clientName + symbolFraming + "\n" + frame);
 
+            Console.WriteLine(frame + "\n" + clientNameWithSideFrame + "\n" + frame);
             Console.ReadKey();
         }
     }
