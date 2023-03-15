@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSLight1
+namespace CSHomeWork1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             Random random = new Random();
-            int limitRandom = 101;
-            int numberDivisionCondition1 = 3;
-            int numberDivisionCondition2 = 5;
-            int randomLimit = random.Next(limitRandom);
+            int maxRandomValue = 101;
+            int divider1 = 3;
+            int divider2 = 5;
+            int randomLimit = random.Next(maxRandomValue);
             Console.WriteLine("Лимит: " + randomLimit);
             int amount = 0;
 
             for (int i = 0; i <= randomLimit; i++)
             {
-                if ((i % numberDivisionCondition1 == 0) || (i % numberDivisionCondition2 == 0))
+                if (i % divider1 == 0 || i % divider2 == 0)
                 {
                     amount += i;
                     Console.Write(i + " ");
@@ -28,7 +28,7 @@ namespace CSLight1
             }
 
             Console.WriteLine();
-            Console.WriteLine("Cумма положительных чисел, делящихся на 3 или 5: " + amount);
+            Console.WriteLine($"Cумма положительных чисел, делящихся на {divider1} или {divider2}: {amount}");
             Console.ReadKey();
         }
     }
