@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,19 +17,19 @@ namespace CSHomeWork1
             int divider2 = 5;
             int randomLimit = random.Next(maxRandomValue);
             Console.WriteLine("Лимит: " + randomLimit);
-            int amount = 0;
+            int sumOfNumbers = 0;
 
             for (int i = 0; i <= randomLimit; i++)
             {
                 if (i % divider1 == 0 || i % divider2 == 0)
                 {
-                    amount += i;
+                    sumOfNumbers += i;
                     Console.Write(i + " ");
                 }
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Cумма положительных чисел, делящихся на {divider1} или {divider2}: {amount}");
+            Console.WriteLine($"Cумма положительных чисел, делящихся на {divider1} или {divider2}: {sumOfNumbers}");
             Console.ReadKey();
         }
     }
