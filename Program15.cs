@@ -12,16 +12,16 @@ namespace CSHomeWork1
         static void Main(string[] args)
         {
             Random random = new Random();
-            int minNumber = 1;
-            int maxNumber = 27;
-            int minThreeDigitNumber = 100;
-            int maxThreeDigitNumber = 999;
-            int number = random.Next(maxNumber) + minNumber;
+            int minNumberDivider = 1;
+            int maxNumberDivider = 27;
+            int minNumber = 100;
+            int maxNumber = 999;
+            int divider = random.Next(maxNumberDivider) + minNumberDivider;
             int counter = 0;
 
-            for (int i = 0; i <= maxThreeDigitNumber; i += number)
+            for (int i = 0; i <= maxNumber; i += divider)
             {
-                if (minThreeDigitNumber <= i)
+                if (minNumber <= i)
                 {
                     counter++;
                     Console.Write(i + " ");
@@ -29,7 +29,7 @@ namespace CSHomeWork1
             }
 
             Console.WriteLine();
-            Console.WriteLine("Кол-во трехзначных натуральных чисел, которые кратны " + number + ": " +
+            Console.WriteLine("Кол-во трехзначных натуральных чисел, которые кратны " + divider + ": " +
                 counter);
             Console.ReadKey();
         }
