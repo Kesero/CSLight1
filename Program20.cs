@@ -15,8 +15,8 @@ namespace CSHomeWork1
         {
             int countRows = 10;
             int countCols = 10;
-            int minRAndomValue = 0;
-            int maxRAndomValue = 10;
+            int minRandomValue = 0;
+            int maxRandomValue = 10;
             int numberHighest = int.MinValue;
             int numberReplacementOfLargest = 0;
             int[,] array = new int[countRows, countCols];
@@ -26,7 +26,7 @@ namespace CSHomeWork1
             {
                 for (int i2 = 0; i2 < array.GetLength(1); i2++)
                 {
-                    array[i1, i2] = random.Next(minRAndomValue, maxRAndomValue);
+                    array[i1, i2] = random.Next(minRandomValue, maxRandomValue);
                     Console.Write(array[i1, i2] + " ");
 
                     if (array[i1, i2] > numberHighest)
