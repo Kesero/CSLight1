@@ -20,6 +20,8 @@ namespace CSHomeWork1
             int summOf2Row = 0;
             int multiplOf1Col = 1;
             int numberIndexDifferences = 1;
+            int minRandomValue = 1;
+            int maxRandomValue = 10;
             int[,] array = new int[countRows, countCols];
             Random random = new Random();
 
@@ -27,7 +29,7 @@ namespace CSHomeWork1
             {
                 for (int i2 = 0; i2 < array.GetLength(1); i2++)
                 {
-                    array[i1, i2] = random.Next(1, 10);
+                    array[i1, i2] = random.Next(minRandomValue, maxRandomValue);
                     Console.Write(array[i1, i2] + " ");
 
                     if (i1 == indexOf2Row)
