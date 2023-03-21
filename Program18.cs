@@ -13,10 +13,10 @@ namespace CSHomeWork1
     {
         static void Main(string[] args)
         {
-            const string commandSpell1 = "spawn";
-            const string commandSpell2 = "attack";
-            const string commandSpell3 = "health";
-            const string commandSpell4 = "buff";
+            const string CommandSpellSpawn = "spawn";
+            const string CommandSpellAttack = "attack";
+            const string CommandSpellHealth = "health";
+            const string CommandSpellBuff = "buff";
 
             Random random = new Random();
             int maxPlayerHealth = 1000;
@@ -31,13 +31,14 @@ namespace CSHomeWork1
             int countSpirit = 0;
             int coefDamageMultiplier = 1;
             bool havePlayerVulnerability = false;
+            bool haveProtectionTreatment = false;
             int countHealthRestored = 300;
             int maxNumberOfRandomBool = 2;
             Console.WriteLine("----- Заклинания -----");
-            Console.WriteLine(commandSpell1 + " - призвать духа");
-            Console.WriteLine(commandSpell2 + " - атака духами");
-            Console.WriteLine(commandSpell3 + " - лечиться (+" + countHealthRestored + "hp)");
-            Console.WriteLine(commandSpell4 + " - увеличить урон");
+            Console.WriteLine(CommandSpellSpawn + " - призвать духа");
+            Console.WriteLine(CommandSpellAttack + " - атака духами");
+            Console.WriteLine(CommandSpellHealth + " - лечиться (+" + countHealthRestored + "hp)");
+            Console.WriteLine(CommandSpellBuff + " - увеличить урон");
             Console.WriteLine();
 
             while (playerHealth > 0 && bossHealth > 0)
@@ -46,14 +47,14 @@ namespace CSHomeWork1
 
                 switch (playerInput)
                 {
-                    case commandSpell1:
+                    case CommandSpellSpawn:
                         playerHealth -= spiritDamage;
                         countSpirit++;
                         Console.WriteLine("Вы призвали духа, сейчас духов: " + countSpirit);
                         Console.WriteLine("  -" + spiritDamage + " вашего здоровья");
                         break;
 
-                    case commandSpell2:
+                    case CommandSpellAttack:
                         if (countSpirit > 0)
                         {
                             playerDamage = spiritDamage * countSpirit * coefDamageMultiplier;
@@ -66,7 +67,7 @@ namespace CSHomeWork1
                         }
                         break;
 
-                    case commandSpell3:
+                    case CommandSpellHealth:
                         Console.WriteLine("Вы подлечились.");
                         if (playerHealth >= maxPlayerHealth - countHealthRestored)
                         {
@@ -77,9 +78,10 @@ namespace CSHomeWork1
                         {
                             playerHealth += countHealthRestored;
                         }
+                        haveProtectionTreatment = true;
                         break;
 
-                    case commandSpell4:
+                    case CommandSpellBuff:
                         coefDamageMultiplier++;
                         havePlayerVulnerability = true;
                         Console.WriteLine("Весь урон с вашей стороны увеличен.");
@@ -94,7 +96,16 @@ namespace CSHomeWork1
                 bool canBossCriticalDamageMake = Convert.ToBoolean(random.Next(maxNumberOfRandomBool));
                 bossDamage = random.Next(minBossDamage, maxBossDamage) +
                     Convert.ToInt32(havePlayerVulnerability) * Convert.ToInt32(canBossCriticalDamageMake) * maxBossDamage;
-                playerHealth -= bossDamage;
+
+                if (!haveProtectionTreatment)
+                {
+                    playerHealth -= bossDamage;
+                    Console.WriteLine("  -" + bossDamage + " по Вам");
+                }
+                else
+                {
+                    haveProtectionTreatment = false;
+                }
 
                 if (havePlayerVulnerability && canBossCriticalDamageMake)
                 {
@@ -102,7 +113,6 @@ namespace CSHomeWork1
                     havePlayerVulnerability = false;
                 }
 
-                Console.WriteLine("  -" + bossDamage + " по Вам");
                 Console.WriteLine();
                 Console.WriteLine("Boss Hp: " + bossHealth);
                 Console.WriteLine("Player Hp: " + playerHealth);
