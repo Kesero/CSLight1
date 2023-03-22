@@ -17,8 +17,7 @@ namespace CSHomeWork1
             string commandSum = "sum";
             string commandExit = "exit";
             string clientInput = "";
-            int differenceToNeighboringIndex = 1;
-            int[] array = new int[1];
+            int[] array = new int[0];
             Console.WriteLine($"любая цифра - добавление этой цифры в сумму\n{commandSum} - посчитать сумму\n{commandExit} - выход");
 
             while (clientInput != commandExit)
@@ -38,7 +37,7 @@ namespace CSHomeWork1
                 }
                 else if (clientInput != commandExit)
                 {
-                    int[] arrayCopy = new int[array.Length + differenceToNeighboringIndex];
+                    int[] arrayCopy = new int[array.Length + 1];
 
                     for (int i = 0; i < array.Length; i++)
                     {
@@ -46,8 +45,8 @@ namespace CSHomeWork1
                     }
 
                     array = arrayCopy;
-                    array[array.Length - differenceToNeighboringIndex] += Convert.ToInt32(clientInput);
-                } 
+                    array[array.Length - 1] += Convert.ToInt32(clientInput);
+                }
             }
 
             Console.ReadKey();
