@@ -36,13 +36,9 @@ namespace CSHomeWork1
                     {
                         summOf2Row += array[indexOf2Row, i2];
                     }
-
-                    if (i2 == indexOf1Col)
-                    {
-                        multiplOf1Col *= array[i1, indexOf1Col];
-                    }
                 }
 
+                multiplOf1Col *= array[i1, indexOf1Col];
                 Console.WriteLine();
             }
 
