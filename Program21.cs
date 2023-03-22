@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -17,10 +18,11 @@ namespace CSHomeWork1
             int minRandomValue = 0;
             int maxRandomValue = 10;
             int[] array = new int[countCols];
+            int numberOfFirstIndex = 0;
             int differenceToNeighboringIndex = 1;
             Random random = new Random();
 
-            for (int i = 0; i < array.GetLength(0); i++)
+            for (int i = numberOfFirstIndex; i < array.GetLength(0); i++)
             {
                 array[i] = random.Next(minRandomValue, maxRandomValue);
                 Console.Write(array[i] + " ");
@@ -29,29 +31,24 @@ namespace CSHomeWork1
             Console.WriteLine();
             Console.Write("Локальные максимумы: ");
 
-            for (int i = 0; i < array.Length; i++)
+
+            if (array[numberOfFirstIndex] > array[numberOfFirstIndex + differenceToNeighboringIndex])
             {
-                if (i == 0)
+                Console.Write(array[numberOfFirstIndex] + " ");
+            }
+
+            for (int i = numberOfFirstIndex + differenceToNeighboringIndex; i < array.Length - differenceToNeighboringIndex; i++)
+            {
+                if (array[i - differenceToNeighboringIndex] < array[i] && array[i] > array[i + differenceToNeighboringIndex])
                 {
-                    if (array[i] > array[i + differenceToNeighboringIndex])
-                    {
-                        Console.Write(array[i] + " ");
-                    }
-                } 
-                else if (i == array.Length - differenceToNeighboringIndex)
-                {
-                    if (array[i - differenceToNeighboringIndex] < array[i])
-                    {
-                        Console.Write(array[i] + " ");
-                    }
+                    Console.Write(array[i] + " ");
                 }
-                else
-                {
-                    if (array[i - differenceToNeighboringIndex] < array[i] && array[i] > array[i + differenceToNeighboringIndex])
-                    {
-                        Console.Write(array[i] + " ");
-                    }
-                }
+            }
+
+            if (array[array.Length - differenceToNeighboringIndex - differenceToNeighboringIndex]
+                < array[array.Length - differenceToNeighboringIndex])
+            {
+                Console.Write(array[array.Length - differenceToNeighboringIndex] + " ");
             }
 
             Console.ReadKey();
