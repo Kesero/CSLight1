@@ -15,35 +15,53 @@ namespace CSHomeWork1
         {
             int countRows = 5;
             int countCols = 5;
-            int indexOf2Row = 1;
-            int indexOf1Col = 0;
-            int summOf2Row = 0;
-            int multiplOf1Col = 1;
+            int indexOfRow2 = 1;
+            int indexOfCol1 = 0;
+            int summOfRow2 = 0;
+            int multiplOfCol1 = 1;
             int numberIndexDifferences = 1;
             int minRandomValue = 1;
             int maxRandomValue = 10;
-            int[,] array = new int[countRows, countCols];
+            int[,] numbers = new int[countRows, countCols];
             Random random = new Random();
 
-            for (int i1 = 0; i1 < array.GetLength(0); i1++)
+            for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                for (int i2 = 0; i2 < array.GetLength(1); i2++)
+                for (int j = 0; j < numbers.GetLength(1); j++)
                 {
-                    array[i1, i2] = random.Next(minRandomValue, maxRandomValue);
-                    Console.Write(array[i1, i2] + " ");
-
-                    if (i1 == indexOf2Row)
-                    {
-                        summOf2Row += array[indexOf2Row, i2];
-                    }
+                    numbers[i, j] = random.Next(minRandomValue, maxRandomValue);
+                    Console.Write(numbers[i, j] + " ");
                 }
 
-                multiplOf1Col *= array[i1, indexOf1Col];
                 Console.WriteLine();
             }
 
-            Console.WriteLine($"Сумма {indexOf2Row + numberIndexDifferences} строки: {summOf2Row}");
-            Console.WriteLine($"Произведение {indexOf1Col + numberIndexDifferences} колонки: {multiplOf1Col}");
+            for (int i = 0; i < numbers.GetLength(0); i++)
+            {
+                for (int j = 0; j < numbers.GetLength(1); j++)
+                {
+                    if (i == indexOfRow2)
+                    {
+                        summOfRow2 += numbers[indexOfRow2, j];
+                    }
+                }
+            }
+
+            for (int i = 0; i < numbers.GetLength(0); i++)
+            {
+                for (int j = 0; j < numbers.GetLength(1); j++)
+                {
+                    if (j == indexOfCol1)
+                    {
+                        multiplOfCol1 *= numbers[i, indexOfCol1];
+                    }
+                }
+            }
+
+            int viewForClientIndexOfRow2 = indexOfRow2 + numberIndexDifferences;
+            int viewForClientIndexOfCol1 = indexOfCol1 + numberIndexDifferences;
+            Console.WriteLine($"Сумма {viewForClientIndexOfRow2} строки: {summOfRow2}");
+            Console.WriteLine($"Произведение {viewForClientIndexOfCol1} колонки: {multiplOfCol1}");
             Console.ReadKey();
         }
     }
