@@ -38,24 +38,12 @@ namespace CSHomeWork1
 
             for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                for (int j = 0; j < numbers.GetLength(1); j++)
-                {
-                    if (i == indexOfRow2)
-                    {
-                        summOfRow2 += numbers[indexOfRow2, j];
-                    }
-                }
+                summOfRow2 += numbers[indexOfRow2, i];
             }
 
             for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                for (int j = 0; j < numbers.GetLength(1); j++)
-                {
-                    if (j == indexOfCol1)
-                    {
-                        multiplOfCol1 *= numbers[i, indexOfCol1];
-                    }
-                }
+                multiplOfCol1 *= numbers[i, indexOfCol1];
             }
 
             int viewForClientIndexOfRow2 = indexOfRow2 + numberIndexDifferences;
