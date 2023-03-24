@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.ExceptionServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSHomeWork1
 {
@@ -16,37 +8,37 @@ namespace CSHomeWork1
         {
             string commandSum = "sum";
             string commandExit = "exit";
-            string clientInput = "";
-            int[] array = new int[0];
+            string clientInput = "0";
+            int[] numbers = new int[0];
             Console.WriteLine($"любая цифра - добавление этой цифры в сумму\n{commandSum} - посчитать сумму\n{commandExit} - выход");
 
             while (clientInput != commandExit)
             {
-                clientInput = Console.ReadLine();
-
                 if (clientInput == commandSum)
                 {
                     int summ = 0;
 
-                    for (int i = 0; i < array.Length; i++)
+                    for (int i = 0; i < numbers.Length; i++)
                     {
-                        summ += array[i];
+                        summ += numbers[i];
                     }
 
                     Console.WriteLine("Сумма введёных чисел: " + summ);
                 }
-                else if (clientInput != commandExit)
+                else
                 {
-                    int[] arrayCopy = new int[array.Length + 1];
+                    int[] arrayCopy = new int[numbers.Length + 1];
 
-                    for (int i = 0; i < array.Length; i++)
+                    for (int i = 0; i < numbers.Length; i++)
                     {
-                        arrayCopy[i] = array[i];
+                        arrayCopy[i] = numbers[i];
                     }
 
-                    array = arrayCopy;
-                    array[array.Length - 1] += Convert.ToInt32(clientInput);
+                    numbers = arrayCopy;
+                    numbers[numbers.Length - 1] += Convert.ToInt32(clientInput);
                 }
+
+                clientInput = Console.ReadLine();
             }
 
             Console.ReadKey();
