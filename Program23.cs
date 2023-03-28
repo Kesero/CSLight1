@@ -10,9 +10,8 @@ namespace CSHomeWork1
             int maxRandomValue = 10;
             Random random = new Random();
             int[] numbers = new int[arrayLength];
-            int countMaxRepeat = int.MinValue;
+            int countMaxRepeat = 1;
             int countRepeat = 1;
-            int repeatNumber = 0;
 
             for (int i = 0; i < numbers.Length; i++)
             {
@@ -29,10 +28,7 @@ namespace CSHomeWork1
                     if (countMaxRepeat < countRepeat)
                     {
                         countMaxRepeat = countRepeat;
-                        repeatNumber = numbers[i];
                     }
-
-                    repeatNumber = numbers[i];
                 }
                 else
                 {
@@ -41,7 +37,29 @@ namespace CSHomeWork1
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Наибольшеей кол-во повторений: {countMaxRepeat}\nПовторяющееся максимальное кол-во раз число: {repeatNumber}");
+            Console.Write($"Наибольшеей кол-во повторений: {countMaxRepeat}\nПовторяющееся максимальное кол-во раз число: ");
+
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                countRepeat = 1;
+                for (int j = i; j < numbers.Length - 1; j++)
+                {
+                    if (numbers[j] == numbers[j + 1])
+                    {
+                        countRepeat++;
+                    }
+                    else if (countRepeat == countMaxRepeat)
+                    {
+                        Console.Write(numbers[j] + " ");
+                        break;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
             Console.ReadKey();
         }
     }
