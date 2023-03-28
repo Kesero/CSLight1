@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.ExceptionServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSHomeWork1
 {
@@ -14,15 +7,15 @@ namespace CSHomeWork1
         static void Main(string[] args)
         {
             int countRows = 5;
-            int countCols = 5;
+            int countColumns = 5;
             int indexOfRow2 = 1;
-            int indexOfCol1 = 0;
+            int indexOfColumn1 = 0;
             int summOfRow2 = 0;
-            int multiplOfCol1 = 1;
+            int multiplOfColumn1 = 1;
             int numberIndexDifferences = 1;
             int minRandomValue = 1;
             int maxRandomValue = 10;
-            int[,] numbers = new int[countRows, countCols];
+            int[,] numbers = new int[countRows, countColumns];
             Random random = new Random();
 
             for (int i = 0; i < numbers.GetLength(0); i++)
@@ -43,13 +36,13 @@ namespace CSHomeWork1
 
             for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                multiplOfCol1 *= numbers[i, indexOfCol1];
+                multiplOfColumn1 *= numbers[i, indexOfColumn1];
             }
 
             int viewForClientIndexOfRow2 = indexOfRow2 + numberIndexDifferences;
-            int viewForClientIndexOfCol1 = indexOfCol1 + numberIndexDifferences;
+            int viewForClientIndexOfCol1 = indexOfColumn1 + numberIndexDifferences;
             Console.WriteLine($"Сумма {viewForClientIndexOfRow2} строки: {summOfRow2}");
-            Console.WriteLine($"Произведение {viewForClientIndexOfCol1} колонки: {multiplOfCol1}");
+            Console.WriteLine($"Произведение {viewForClientIndexOfCol1} колонки: {multiplOfColumn1}");
             Console.ReadKey();
         }
     }
