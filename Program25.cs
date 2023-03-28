@@ -6,8 +6,9 @@ namespace CSHomeWork1
     {
         static void Main(string[] args)
         {
+            char symbolSeparation = ' ';
             string text = Console.ReadLine();
-            string[] textWordByWord = text.Split(' ');
+            string[] textWordByWord = text.Split(symbolSeparation);
             Console.WriteLine();
 
             for (int i = 0; i < textWordByWord.Length; i++)
