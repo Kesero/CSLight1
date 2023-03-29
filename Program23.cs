@@ -42,6 +42,7 @@ namespace CSHomeWork1
             for (int i = 0; i < numbers.Length - 1; i++)
             {
                 countRepeat = 1;
+
                 for (int j = i; j < numbers.Length - 1; j++)
                 {
                     if (numbers[j] == numbers[j + 1])
