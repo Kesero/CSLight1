@@ -6,41 +6,140 @@ namespace CSHomeWork1
     {
         static void Main(string[] args)
         {
-            int maxRandomValue = 10;
-            int arrayLength = 20;
-            Random random = new Random();
-            int[] numbers = new int[arrayLength];
+            const string CommandAddDossier = "add";
+            const string CommandShowAllDossiers = "show";
+            const string CommandRemoveDossier = "remove";
+            const string CommandSearchSurname = "search";
 
-            for (int i = 0; i < arrayLength; i++)
+            string[] workersInitials = new string[0];
+            string[] workersPosts = new string[0];
+            string commandExit = "exit";
+            string clientInput = "";
+            char symbolSeparation = ' ';
+
+            while (clientInput != commandExit)
             {
-                numbers[i] = random.Next(maxRandomValue);
-                Console.Write(numbers[i] + " ");
+                Console.WriteLine($"\n------- Commands -------" +
+                $"\n{CommandAddDossier} - добавить досье" +
+                $"\n{CommandShowAllDossiers} - показать список досье" +
+                $"\n{CommandRemoveDossier} - удалить досье" +
+                $"\n{CommandSearchSurname} - поиск досье по фамилии" +
+                $"\n{commandExit} - выход\n");
+
+                clientInput = Console.ReadLine();
+
+                switch (clientInput)
+                {
+                    case CommandAddDossier:
+                        AddDossier(ref workersInitials, ref workersPosts);
+                        break;
+                    case CommandShowAllDossiers:
+                        ShowAllDossiers(workersInitials, workersPosts);
+                        break;
+                    case CommandRemoveDossier:
+                        RemoveDossier(ref workersInitials, ref workersPosts);
+                        break;
+                    case CommandSearchSurname:
+                        SearchSurname(symbolSeparation, workersInitials, workersPosts);
+                        break;
+                    default:
+                        if (clientInput != commandExit)
+                        {
+                            Console.WriteLine("Несуществующая команда...");
+                        }
+                        break;
+                }
+            }
+        }
+
+        static void AddDossier(ref string[] workersInitials, ref string[] workersPosts)
+        {
+            Console.Clear();
+            string[] tempWorkersInitials = new string[workersInitials.Length + 1];
+            string[] tempWorkersPosts = new string[workersPosts.Length + 1];
+
+            for (int i = 0; i < workersInitials.Length; i++)
+            {
+                tempWorkersInitials[i] = workersInitials[i];
+                tempWorkersPosts[i] = workersPosts[i];
             }
 
-            Console.WriteLine();
-            Console.Write("На сколько позиций вы хотите сдвинуть массив влево: ");
-            int shift = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите ФИО нового работника: ");
+            string workerInitial = Console.ReadLine();
+            Console.Write("Введите Должность нового работника: ");
+            string workerPost = Console.ReadLine();
+            tempWorkersInitials[tempWorkersInitials.Length - 1] = workerInitial;
+            tempWorkersPosts[tempWorkersPosts.Length - 1] = workerPost;
+            workersInitials = tempWorkersInitials;
+            workersPosts = tempWorkersPosts;
+        }
 
-            for (int i = 0; i < shift; i++)
+        static void ShowAllDossiers(string[] workersInitials, string[] workersPosts)
+        {
+            Console.Clear();
+
+            for (int i = 0; i < workersInitials.Length; i++)
             {
-                int copyFirstCell = numbers[0];
+                Console.WriteLine(i + " | " + workersInitials[i] + " - " + workersPosts[i]);
+            }
+        }
 
-                for (int j = 0; j < numbers.Length - 1; j++)
+        static void RemoveDossier(ref string[] workersInitials, ref string[] workersPosts)
+        {
+            Console.Clear();
+            string[] tempWorkersInitials = new string[workersInitials.Length - 1];
+            string[] tempWorkersPosts = new string[workersPosts.Length - 1];
+            Console.Write("Номер удаляемого досье: ");
+            int numberOfDeletDosier = Convert.ToInt32(Console.ReadLine());
+
+            if (numberOfDeletDosier > -1 && numberOfDeletDosier < workersInitials.Length)
+            {
+                for (int i = 0; i < workersInitials.Length; i++)
                 {
-                    numbers[j] = numbers[j + 1];
+                    if (i > numberOfDeletDosier)
+                    {
+                        workersInitials[i - 1] = workersInitials[i];
+                        workersPosts[i - 1] = workersPosts[i];
+                    }
                 }
 
-                numbers[numbers.Length - 1] = copyFirstCell;
+                for (int i = 0; i < tempWorkersInitials.Length; i++)
+                {
+                    tempWorkersInitials[i] = workersInitials[i];
+                    tempWorkersPosts[i] = workersPosts[i];
+                }
+
+                workersInitials = tempWorkersInitials;
+                workersPosts = tempWorkersPosts;
             }
-
-            Console.WriteLine("Исходный массив: ");
-
-            for (int i = 0; i < numbers.Length; i++)
+            else
             {
-                Console.Write(numbers[i] + " ");
+                Console.WriteLine("Досье с таким номером нету...");
+            }
+        }
+
+        static void SearchSurname(char symbolSeparation, string[] workersInitials, string[] workersPosts)
+        {
+            Console.Clear();
+            Console.Write("Введите фамилию для поиска: ");
+            string searchSurname = Console.ReadLine();
+            bool haveInputSurname = false;
+
+            for (int i = 0; i < workersInitials.Length; i++)
+            {
+                string[] workerInitialArray = workersInitials[i].Split(symbolSeparation);
+
+                if (workerInitialArray[0] == searchSurname)
+                {
+                    Console.WriteLine(i + " | " + workersInitials[i] + " - " + workersPosts[i]);
+                    haveInputSurname = true;
+                }
             }
 
-            Console.ReadKey();
+            if (!haveInputSurname)
+            {
+                Console.WriteLine("Работника с такой фамилии нету!");
+            }
         }
     }
 }
