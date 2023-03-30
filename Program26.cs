@@ -25,7 +25,6 @@ namespace CSHomeWork1
                 $"\n{CommandRemoveDossier} - удалить досье" +
                 $"\n{CommandSearchSurname} - поиск досье по фамилии" +
                 $"\n{commandExit} - выход\n");
-
                 clientInput = Console.ReadLine();
 
                 switch (clientInput)
@@ -43,10 +42,7 @@ namespace CSHomeWork1
                         SearchSurname(symbolSeparation, workersInitials, workersPosts);
                         break;
                     default:
-                        if (clientInput != commandExit)
-                        {
-                            Console.WriteLine("Несуществующая команда...");
-                        }
+                        CheckCommandToExit(clientInput, commandExit);
                         break;
                 }
             }
@@ -70,18 +66,7 @@ namespace CSHomeWork1
             string workerPost = Console.ReadLine();
             tempWorkersInitials[tempWorkersInitials.Length - 1] = workerInitial;
             tempWorkersPosts[tempWorkersPosts.Length - 1] = workerPost;
-            workersInitials = tempWorkersInitials;
-            workersPosts = tempWorkersPosts;
-        }
-
-        static void ShowAllDossiers(string[] workersInitials, string[] workersPosts)
-        {
-            Console.Clear();
-
-            for (int i = 0; i < workersInitials.Length; i++)
-            {
-                Console.WriteLine(i + " | " + workersInitials[i] + " - " + workersPosts[i]);
-            }
+            AssignmentOfModifiedDossier(ref workersInitials, ref workersPosts, ref tempWorkersInitials, ref tempWorkersPosts);
         }
 
         static void RemoveDossier(ref string[] workersInitials, ref string[] workersPosts)
@@ -92,29 +77,35 @@ namespace CSHomeWork1
             Console.Write("Номер удаляемого досье: ");
             int numberOfDeletDosier = Convert.ToInt32(Console.ReadLine());
 
-            if (numberOfDeletDosier > -1 && numberOfDeletDosier < workersInitials.Length)
+            if (numberOfDeletDosier >= 0 && numberOfDeletDosier < workersInitials.Length)
             {
-                for (int i = 0; i < workersInitials.Length; i++)
-                {
-                    if (i > numberOfDeletDosier)
-                    {
-                        workersInitials[i - 1] = workersInitials[i];
-                        workersPosts[i - 1] = workersPosts[i];
-                    }
-                }
-
-                for (int i = 0; i < tempWorkersInitials.Length; i++)
+                for (int i = 0; i < numberOfDeletDosier; i++)
                 {
                     tempWorkersInitials[i] = workersInitials[i];
                     tempWorkersPosts[i] = workersPosts[i];
                 }
 
-                workersInitials = tempWorkersInitials;
-                workersPosts = tempWorkersPosts;
+                for (int i = numberOfDeletDosier; i < tempWorkersInitials.Length; i++)
+                {
+                    tempWorkersInitials[i] = workersInitials[i + 1];
+                    tempWorkersPosts[i] = workersPosts[i + 1];
+                }
+
+                AssignmentOfModifiedDossier(ref workersInitials, ref workersPosts, ref tempWorkersInitials, ref tempWorkersPosts);
             }
             else
             {
                 Console.WriteLine("Досье с таким номером нету...");
+            }
+        }
+
+        static void ShowAllDossiers(string[] workersInitials, string[] workersPosts)
+        {
+            Console.Clear();
+
+            for (int i = 0; i < workersInitials.Length; i++)
+            {
+                Console.WriteLine(i + " | " + workersInitials[i] + " - " + workersPosts[i]);
             }
         }
 
@@ -136,10 +127,24 @@ namespace CSHomeWork1
                 }
             }
 
-            if (!haveInputSurname)
+            if (haveInputSurname == false)
             {
                 Console.WriteLine("Работника с такой фамилии нету!");
             }
+        }
+
+        static void CheckCommandToExit(string anyCommand, string commandExit)
+        {
+            if (anyCommand != commandExit)
+            {
+                Console.WriteLine("Несуществующая команда...");
+            }
+        }
+
+        static void AssignmentOfModifiedDossier(ref string[] workersInitials, ref string[] workersPosts, ref string[] tempWorkersInitials, ref string[] tempWorkersPosts)
+        {
+            workersInitials = tempWorkersInitials;
+            workersPosts = tempWorkersPosts;
         }
     }
 }
