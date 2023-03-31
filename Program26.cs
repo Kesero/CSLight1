@@ -51,47 +51,27 @@ namespace CSHomeWork1
         static void AddDossier(ref string[] workersInitials, ref string[] workersPosts)
         {
             Console.Clear();
-            string[] tempWorkersInitials = new string[workersInitials.Length + 1];
-            string[] tempWorkersPosts = new string[workersPosts.Length + 1];
-
-            for (int i = 0; i < workersInitials.Length; i++)
-            {
-                tempWorkersInitials[i] = workersInitials[i];
-                tempWorkersPosts[i] = workersPosts[i];
-            }
+            workersInitials = resizeArray(workersInitials, 1);
+            workersPosts = resizeArray(workersPosts, 1);
 
             Console.Write("Введите ФИО нового работника: ");
             string workerInitial = Console.ReadLine();
             Console.Write("Введите Должность нового работника: ");
             string workerPost = Console.ReadLine();
-            tempWorkersInitials[tempWorkersInitials.Length - 1] = workerInitial;
-            tempWorkersPosts[tempWorkersPosts.Length - 1] = workerPost;
-            AssignmentOfModifiedDossier(ref workersInitials, ref workersPosts, ref tempWorkersInitials, ref tempWorkersPosts);
+            workersInitials[workersInitials.Length - 1] = workerInitial;
+            workersPosts[workersPosts.Length - 1] = workerPost;
         }
 
         static void RemoveDossier(ref string[] workersInitials, ref string[] workersPosts)
         {
             Console.Clear();
-            string[] tempWorkersInitials = new string[workersInitials.Length - 1];
-            string[] tempWorkersPosts = new string[workersPosts.Length - 1];
             Console.Write("Номер удаляемого досье: ");
             int numberOfDeletDosier = Convert.ToInt32(Console.ReadLine());
 
             if (numberOfDeletDosier >= 0 && numberOfDeletDosier < workersInitials.Length)
             {
-                for (int i = 0; i < numberOfDeletDosier; i++)
-                {
-                    tempWorkersInitials[i] = workersInitials[i];
-                    tempWorkersPosts[i] = workersPosts[i];
-                }
-
-                for (int i = numberOfDeletDosier; i < tempWorkersInitials.Length; i++)
-                {
-                    tempWorkersInitials[i] = workersInitials[i + 1];
-                    tempWorkersPosts[i] = workersPosts[i + 1];
-                }
-
-                AssignmentOfModifiedDossier(ref workersInitials, ref workersPosts, ref tempWorkersInitials, ref tempWorkersPosts);
+                workersInitials = resizeArray(workersInitials, -1, numberOfDeletDosier);
+                workersPosts = resizeArray(workersPosts, -1, numberOfDeletDosier);
             }
             else
             {
@@ -141,10 +121,31 @@ namespace CSHomeWork1
             }
         }
 
-        static void AssignmentOfModifiedDossier(ref string[] workersInitials, ref string[] workersPosts, ref string[] tempWorkersInitials, ref string[] tempWorkersPosts)
+        static string[] resizeArray(string[] originalArray, int countNewIndexes, int numberRemoveIndex = -1)
         {
-            workersInitials = tempWorkersInitials;
-            workersPosts = tempWorkersPosts;
+            string[] tempArray = new string[originalArray.Length + countNewIndexes];
+
+            if (numberRemoveIndex == -1)
+            {
+                for (int i = 0; i < originalArray.Length; i++)
+                {
+                    tempArray[i] = originalArray[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < numberRemoveIndex; i++)
+                {
+                    tempArray[i] = originalArray[i];
+                }
+
+                for (int i = numberRemoveIndex; i < tempArray.Length; i++)
+                {
+                    tempArray[i] = originalArray[i + 1];
+                }
+            }
+
+            return tempArray;
         }
     }
 }
