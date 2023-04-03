@@ -15,7 +15,6 @@ namespace CSHomeWork1
             string[] workersPosts = new string[0];
             string commandExit = "exit";
             string clientInput = "";
-            char symbolSeparation = ' ';
 
             while (clientInput != commandExit)
             {
@@ -39,10 +38,10 @@ namespace CSHomeWork1
                         RemoveDossier(ref workersInitials, ref workersPosts);
                         break;
                     case CommandSearchSurname:
-                        SearchSurname(symbolSeparation, workersInitials, workersPosts);
+                        SearchSurname(workersInitials, workersPosts);
                         break;
                     default:
-                        CheckCommandToExit(clientInput, commandExit);
+                        ReportIfIncorrectInput(clientInput, commandExit);
                         break;
                 }
             }
@@ -51,8 +50,8 @@ namespace CSHomeWork1
         static void AddDossier(ref string[] workersInitials, ref string[] workersPosts)
         {
             Console.Clear();
-            workersInitials = resizeArray(workersInitials, 1);
-            workersPosts = resizeArray(workersPosts, 1);
+            workersInitials = IncreaseArray(workersInitials, 1);
+            workersPosts = IncreaseArray(workersPosts, 1);
 
             Console.Write("Введите ФИО нового работника: ");
             string workerInitial = Console.ReadLine();
@@ -70,8 +69,8 @@ namespace CSHomeWork1
 
             if (numberOfDeletDosier >= 0 && numberOfDeletDosier < workersInitials.Length)
             {
-                workersInitials = resizeArray(workersInitials, -1, numberOfDeletDosier);
-                workersPosts = resizeArray(workersPosts, -1, numberOfDeletDosier);
+                workersInitials = DecreaseArray(workersInitials, -1, numberOfDeletDosier);
+                workersPosts = DecreaseArray(workersPosts, -1, numberOfDeletDosier);
             }
             else
             {
@@ -89,10 +88,11 @@ namespace CSHomeWork1
             }
         }
 
-        static void SearchSurname(char symbolSeparation, string[] workersInitials, string[] workersPosts)
+        static void SearchSurname(string[] workersInitials, string[] workersPosts)
         {
             Console.Clear();
             Console.Write("Введите фамилию для поиска: ");
+            char symbolSeparation = ' ';
             string searchSurname = Console.ReadLine();
             bool haveInputSurname = false;
 
@@ -113,7 +113,7 @@ namespace CSHomeWork1
             }
         }
 
-        static void CheckCommandToExit(string anyCommand, string commandExit)
+        static void ReportIfIncorrectInput(string anyCommand, string commandExit)
         {
             if (anyCommand != commandExit)
             {
@@ -121,28 +121,30 @@ namespace CSHomeWork1
             }
         }
 
-        static string[] resizeArray(string[] originalArray, int countNewIndexes, int numberRemoveIndex = -1)
+        static string[] IncreaseArray(string[] originalArray, int countNewIndexes)
         {
             string[] tempArray = new string[originalArray.Length + countNewIndexes];
 
-            if (numberRemoveIndex == -1)
+            for (int i = 0; i < originalArray.Length; i++)
             {
-                for (int i = 0; i < originalArray.Length; i++)
-                {
-                    tempArray[i] = originalArray[i];
-                }
+                tempArray[i] = originalArray[i];
             }
-            else
-            {
-                for (int i = 0; i < numberRemoveIndex; i++)
-                {
-                    tempArray[i] = originalArray[i];
-                }
 
-                for (int i = numberRemoveIndex; i < tempArray.Length; i++)
-                {
-                    tempArray[i] = originalArray[i + 1];
-                }
+            return tempArray;
+        }
+
+        static string[] DecreaseArray(string[] originalArray, int countNewIndexes, int numberRemoveIndex)
+        {
+            string[] tempArray = new string[originalArray.Length + countNewIndexes];
+
+            for (int i = 0; i < numberRemoveIndex; i++)
+            {
+                tempArray[i] = originalArray[i];
+            }
+
+            for (int i = numberRemoveIndex; i < tempArray.Length; i++)
+            {
+                tempArray[i] = originalArray[i + 1];
             }
 
             return tempArray;
