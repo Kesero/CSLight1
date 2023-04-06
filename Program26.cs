@@ -31,15 +31,19 @@ namespace CSHomeWork1
                     case CommandAddDossier:
                         AddDossier(ref workersInitials, ref workersPosts);
                         break;
+
                     case CommandShowAllDossiers:
                         ShowAllDossiers(workersInitials, workersPosts);
                         break;
+
                     case CommandRemoveDossier:
                         RemoveDossier(ref workersInitials, ref workersPosts);
                         break;
+
                     case CommandSearchSurname:
                         SearchSurname(workersInitials, workersPosts);
                         break;
+
                     default:
                         ReportIfIncorrectInput(clientInput, commandExit);
                         break;
@@ -50,15 +54,15 @@ namespace CSHomeWork1
         static void AddDossier(ref string[] workersInitials, ref string[] workersPosts)
         {
             Console.Clear();
-            workersInitials = IncreaseArray(workersInitials, 1);
-            workersPosts = IncreaseArray(workersPosts, 1);
+            workersInitials = IncreaseArray(workersInitials);
+            workersPosts = IncreaseArray(workersPosts);
 
             Console.Write("Введите ФИО нового работника: ");
             string workerInitial = Console.ReadLine();
             Console.Write("Введите Должность нового работника: ");
             string workerPost = Console.ReadLine();
-            workersInitials[workersInitials.Length - 1] = workerInitial;
-            workersPosts[workersPosts.Length - 1] = workerPost;
+            AddInformationToExtendedArray(workersInitials, workerInitial);
+            AddInformationToExtendedArray(workersPosts, workerPost);
         }
 
         static void RemoveDossier(ref string[] workersInitials, ref string[] workersPosts)
@@ -69,8 +73,8 @@ namespace CSHomeWork1
 
             if (numberOfDeletDosier >= 0 && numberOfDeletDosier < workersInitials.Length)
             {
-                workersInitials = DecreaseArray(workersInitials, -1, numberOfDeletDosier);
-                workersPosts = DecreaseArray(workersPosts, -1, numberOfDeletDosier);
+                workersInitials = DecreaseArray(workersInitials, numberOfDeletDosier);
+                workersPosts = DecreaseArray(workersPosts, numberOfDeletDosier);
             }
             else
             {
@@ -121,9 +125,9 @@ namespace CSHomeWork1
             }
         }
 
-        static string[] IncreaseArray(string[] originalArray, int countNewIndexes)
+        static string[] IncreaseArray(string[] originalArray)
         {
-            string[] tempArray = new string[originalArray.Length + countNewIndexes];
+            string[] tempArray = new string[originalArray.Length + 1];
 
             for (int i = 0; i < originalArray.Length; i++)
             {
@@ -133,9 +137,9 @@ namespace CSHomeWork1
             return tempArray;
         }
 
-        static string[] DecreaseArray(string[] originalArray, int countNewIndexes, int numberRemoveIndex)
+        static string[] DecreaseArray(string[] originalArray, int numberRemoveIndex)
         {
-            string[] tempArray = new string[originalArray.Length + countNewIndexes];
+            string[] tempArray = new string[originalArray.Length - 1];
 
             for (int i = 0; i < numberRemoveIndex; i++)
             {
@@ -148,6 +152,11 @@ namespace CSHomeWork1
             }
 
             return tempArray;
+        }
+
+        static void AddInformationToExtendedArray(string[] extendedArray, string information)
+        {
+            extendedArray[extendedArray.Length - 1] = information;
         }
     }
 }
