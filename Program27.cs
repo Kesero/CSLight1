@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace CSHomeWork1
 {
@@ -8,19 +9,19 @@ namespace CSHomeWork1
         {
             string clientInput = "";
             string commandExit = "-0";
-            int maxBarValue = 10;
+            int maxBarLength = 10;
             double percentageRatio = 100.0;
             int percentageOccupancyBar;
-            int barValue;
+            int actualBarLength;
 
             while (clientInput != commandExit)
             {
                 Console.Write("Какой процент здоровья отобразить: ");
                 clientInput = Console.ReadLine();
                 percentageOccupancyBar = Convert.ToInt32(clientInput);
-                barValue = Convert.ToInt32(percentageOccupancyBar / percentageRatio * maxBarValue);
+                actualBarLength = Convert.ToInt32(percentageOccupancyBar / percentageRatio * maxBarLength);
                 Console.Clear();
-                DrawBar(0, 10, "Health", ' ', ConsoleColor.Red, maxBarValue, barValue);
+                DrawBar(0, 10, "Health", ' ', ConsoleColor.Red, maxBarLength, actualBarLength);
                 Console.SetCursorPosition(0, 0);
             }
         }
@@ -43,22 +44,24 @@ namespace CSHomeWork1
                 value = 0;
             }
 
-            for (int i = 0; i < value; i++)
+            bar = CompletionBar(0, value, symbol);
+            Console.Write(bar);
+            Console.BackgroundColor = defaultColor;
+            bar = CompletionBar(value, maxValue, voidSymbol);
+            Console.Write(bar);
+            Console.Write("]");
+        }
+
+        static string CompletionBar(int startingIndex, int finalIndex, char symbol)
+        {
+            string bar = "";
+
+            for (int i = startingIndex; i < finalIndex; i++)
             {
                 bar += symbol;
             }
 
-            Console.Write(bar);
-            Console.BackgroundColor = defaultColor;
-            bar = "";
-
-            for (int i = value; i < maxValue; i++)
-            {
-                bar += voidSymbol;
-            }
-
-            Console.Write(bar);
-            Console.Write("]");
+            return bar;
         }
     }
 }
