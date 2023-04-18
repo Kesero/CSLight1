@@ -18,9 +18,9 @@ namespace CSHomeWork1
             { '#','#','#','#','#','#','#','#','#','#','#','#' }};
             int playerX = 1;
             int playerY = 1;
-            int playerDX = 0;
-            int playerDY = 0;
-            string playerSymbol = "@";
+            int playerDirectionX = 0;
+            int playerDirectionY = 0;
+            char playerSymbol = '@';
             bool isPlayerAlive = true;
 
             while (isPlayerAlive)
@@ -33,29 +33,33 @@ namespace CSHomeWork1
                 switch (key.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        playerDX = 0;
-                        playerDY = -1;
+                        playerDirectionX = 0;
+                        playerDirectionY = -1;
                         break;
+
                     case ConsoleKey.DownArrow:
-                        playerDX = 0;
-                        playerDY = 1;
+                        playerDirectionX = 0;
+                        playerDirectionY = 1;
                         break;
+
                     case ConsoleKey.LeftArrow:
-                        playerDX = -1;
-                        playerDY = 0;
+                        playerDirectionX = -1;
+                        playerDirectionY = 0;
                         break;
+
                     case ConsoleKey.RightArrow:
-                        playerDX = 1;
-                        playerDY = 0;
+                        playerDirectionX = 1;
+                        playerDirectionY = 0;
                         break;
+
                     default:
-                        playerDX = 0;
-                        playerDY = 0;
+                        playerDirectionX = 0;
+                        playerDirectionY = 0;
                         break;
 
                 }
 
-                MovePlayer(playerDX, playerDY, ref playMap, playerSymbol, ref playerX, ref playerY);
+                MovePlayer(playerDirectionX, playerDirectionY, ref playMap, playerSymbol, ref playerX, ref playerY);
             }
         }
 
@@ -65,31 +69,31 @@ namespace CSHomeWork1
             {
                 for (int j = 0; j < playMap.GetLength(1); j++)
                 {
-                    Console.Write(playMap[i,j]);
+                    Console.Write(playMap[i, j]);
                 }
 
                 Console.WriteLine();
             }
         }
 
-        public static void PrintPlayer(string playerSymbol,int playerX, int playerY)
+        public static void PrintPlayer(char playerSymbol, int playerX, int playerY)
         {
             Console.SetCursorPosition(playerX, playerY);
             Console.Write(playerSymbol);
             Console.SetCursorPosition(0, 0);
         }
 
-        public static void MovePlayer(int playerDX, int playerDY, ref char[] playMap, string playerSymbol, ref int playerX, ref int playerY)
+        public static void MovePlayer(int positionDirectionX, int positionDirectionY, ref char[,] playMap, char playerSymbol, ref int playerX, ref int playerY)
         {
             char wallSymbol = '#';
             char voidSymbol = ' ';
-            
-            if (playMap[playerX + playerDX, playerY + playerDY] != wallSymbol)
+
+            if (playMap[playerY + positionDirectionY, playerX + positionDirectionX] != wallSymbol)
             {
-                playMap[playerX, playerY] = voidSymbol;
-                playerX += playerDX;
-                playerY += playerDY;
-                playMap[playerX, playerY] = playerSymbol;
+                playMap[playerY, playerX] = voidSymbol;
+                playerX += positionDirectionX;
+                playerY += positionDirectionY;
+                playMap[playerY, playerX] = playerSymbol;
             }
         }
     }
