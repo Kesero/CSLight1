@@ -15,6 +15,7 @@ namespace CSHomeWork1
             Dictionary<string, string> dossier = new Dictionary<string, string>();
             string commandExit = "exit";
             string clientInput;
+
             do
             {
                 Console.Clear();
@@ -41,7 +42,6 @@ namespace CSHomeWork1
                         Console.WriteLine("Несуществуюшая команда.");
                         break;
                 }
-
             }
             while (clientInput != commandExit);
         }
