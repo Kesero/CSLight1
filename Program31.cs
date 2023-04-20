@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace CSHomeWork1
 {
@@ -7,17 +8,7 @@ namespace CSHomeWork1
     {
         static void Main(string[] args)
         {
-            Stack<int> shoppingsAmounts = FillShoppingsAmounts();
-            int shopAccount = 0;
-
-            while (shoppingsAmounts.Count != 0)
-            {
-                Console.Clear();
-                Console.WriteLine("Произведена покупка на " + shoppingsAmounts.Peek() + " рублей.");
-                shopAccount += shoppingsAmounts.Pop();
-                Console.WriteLine("Счёт магазина:" + shopAccount);
-                Console.ReadKey();
-            }
+            OperationShop();
         }
 
         static Stack<int> FillShoppingsAmounts()
@@ -34,6 +25,21 @@ namespace CSHomeWork1
             }
 
             return shoppingsAmounts;
+        }
+
+        static void OperationShop()
+        {
+            Stack<int> shoppingsAmounts = FillShoppingsAmounts();
+            int shopAccount = 0;
+
+            while (shoppingsAmounts.Count != 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Произведена покупка на " + shoppingsAmounts.Peek() + " рублей.");
+                shopAccount += shoppingsAmounts.Pop();
+                Console.WriteLine("Счёт магазина:" + shopAccount);
+                Console.ReadKey();
+            }
         }
     }
 }
