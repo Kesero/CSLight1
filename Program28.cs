@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Web;
 
 namespace CSHomeWork1
 {
@@ -16,8 +17,8 @@ namespace CSHomeWork1
             { '#',' ','#',' ','#',' ',' ','#','#','#',' ','#' },
             { '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#' },
             { '#','#','#','#','#','#','#','#','#','#','#','#' }};
-            int playerX = 1;
-            int playerY = 1;
+            int playerPositionX = 1;
+            int playerPositionY = 1;
             int playerDirectionX = 0;
             int playerDirectionY = 0;
             char playerSymbol = '@';
@@ -27,7 +28,7 @@ namespace CSHomeWork1
             {
                 Console.Clear();
                 PrintPlayMap(playMap);
-                PrintPlayer(playerSymbol, playerX, playerY);
+                PrintPlayer(playerSymbol, playerPositionX, playerPositionY);
                 ConsoleKeyInfo key = Console.ReadKey();
 
                 switch (key.Key)
@@ -59,7 +60,7 @@ namespace CSHomeWork1
 
                 }
 
-                MovePlayer(playerDirectionX, playerDirectionY, ref playMap, playerSymbol, ref playerX, ref playerY);
+                MovePlayer(playerDirectionX, playerDirectionY, ref playMap, playerSymbol, ref playerPositionX, ref playerPositionY);
             }
         }
 
@@ -76,24 +77,24 @@ namespace CSHomeWork1
             }
         }
 
-        public static void PrintPlayer(char playerSymbol, int playerX, int playerY)
+        public static void PrintPlayer(char playerSymbol, int playerPositionX, int playerPositionY)
         {
-            Console.SetCursorPosition(playerX, playerY);
+            Console.SetCursorPosition(playerPositionX, playerPositionY);
             Console.Write(playerSymbol);
             Console.SetCursorPosition(0, 0);
         }
 
-        public static void MovePlayer(int positionDirectionX, int positionDirectionY, ref char[,] playMap, char playerSymbol, ref int playerX, ref int playerY)
+        public static void MovePlayer(int positionDirectionX, int positionDirectionY, ref char[,] playMap, char playerSymbol, ref int playerPositionX, ref int playerPositionY)
         {
             char wallSymbol = '#';
             char voidSymbol = ' ';
 
-            if (playMap[playerY + positionDirectionY, playerX + positionDirectionX] != wallSymbol)
+            if (playMap[playerPositionY + positionDirectionY, playerPositionX + positionDirectionX] != wallSymbol)
             {
-                playMap[playerY, playerX] = voidSymbol;
-                playerX += positionDirectionX;
-                playerY += positionDirectionY;
-                playMap[playerY, playerX] = playerSymbol;
+                playMap[playerPositionY, playerPositionX] = voidSymbol;
+                playerPositionX += positionDirectionX;
+                playerPositionY += positionDirectionY;
+                playMap[playerPositionY, playerPositionX] = playerSymbol;
             }
         }
     }
