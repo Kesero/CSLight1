@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace CSHomeWork1
 {
@@ -11,7 +12,6 @@ namespace CSHomeWork1
             string commandExit = "exit";
             string commandSumm = "summ";
             string clientInput;
-            int number;
             Console.WriteLine($"Введите число для добавления его в сумму или команды." +
                 $"\n{commandSumm} - суммировать все введённый числа" +
                 $"\n{commandExit} - выход из программы");
@@ -24,9 +24,8 @@ namespace CSHomeWork1
                 {
                     Console.WriteLine("Сумма: " + Summarize(numbers));
                 }
-                else if (int.TryParse(clientInput, out int resultParse))
+                else if (int.TryParse(clientInput, out int number))
                 {
-                    number = Convert.ToInt32(clientInput);
                     numbers.Add(number);
                 }
                 else
@@ -41,9 +40,9 @@ namespace CSHomeWork1
         {
             int summ = 0;
 
-            foreach (int i in numbers)
+            foreach (int number in numbers)
             {
-                summ += i;
+                summ += number;
             }
 
             return summ;
