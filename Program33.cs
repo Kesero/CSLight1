@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
 
 namespace CSHomeWork1
 {
@@ -25,18 +24,18 @@ namespace CSHomeWork1
                 $"\n{commandExit} - выход");
                 clientInput = Console.ReadLine();
 
-                switch (clientInput) 
+                switch (clientInput)
                 {
                     case CommandAddDosier:
-                        AddDosier(ref dossier);
+                        AddDossier(dossier);
                         break;
 
                     case CommandRemoveDosier:
-                        RomoveDosier(ref dossier);
+                        RomoveDossier(dossier);
                         break;
 
                     case CommandShowAllDosier:
-                        ShowAllDosier(dossier);
+                        ShowAllDossier(dossier);
                         break;
                     default:
                         Console.WriteLine("Несуществуюшая команда.");
@@ -46,17 +45,26 @@ namespace CSHomeWork1
             while (clientInput != commandExit);
         }
 
-        static void AddDosier(ref Dictionary<string, string> dossier)
+        static void AddDossier(Dictionary<string, string> dossier)
         {
             Console.Clear();
             Console.Write("Введите инициалы нового работника: ");
             string initialsOfWorker = Console.ReadLine();
             Console.Write("Введите должность нового работника: ");
             string postOfWorker = Console.ReadLine();
-            dossier.Add(initialsOfWorker, postOfWorker);
+
+            if (dossier.ContainsKey(initialsOfWorker))
+            {
+                Console.WriteLine("Такие инициалы уже есть.");
+                Console.ReadKey();
+            }
+            else
+            {
+                dossier.Add(initialsOfWorker, postOfWorker);
+            }
         }
 
-        static void RomoveDosier(ref Dictionary<string, string> dossier)
+        static void RomoveDossier(Dictionary<string, string> dossier)
         {
             Console.Clear();
             Console.Write("Введите инициалы увольняемого работника: ");
@@ -64,11 +72,11 @@ namespace CSHomeWork1
             dossier.Remove(initialsOfWorker);
         }
 
-        static void ShowAllDosier(Dictionary<string, string> dossier)
+        static void ShowAllDossier(Dictionary<string, string> dossier)
         {
             Console.Clear();
 
-            foreach (var worker in dossier)
+            foreach (KeyValuePair<string, string> worker in dossier)
             {
                 Console.WriteLine(worker.Key + " - " + worker.Value);
             }
