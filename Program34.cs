@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSHomeWork1
 {
@@ -9,41 +10,27 @@ namespace CSHomeWork1
         {
             string[] line1 = { "1", "2", "3", "6", "5", "4" };
             string[] line2 = { "2", "3", "9", "8", "7" };
-            List<string> summLines = SummarizeLines(line1, line2);
-            printArray(line1);
-            printArray(line2);
-            printArray(summLines);
+            List<string> summLines = new List<string>();
+            PrintArray(line1);
+            PrintArray(line2);
+            MergeLines(summLines, line1);
+            MergeLines(summLines, line2);
+            PrintArray(summLines);
             Console.ReadKey();
         }
 
-        static List<string> SummarizeLines(string[] line1, string[] line2)
+        static void MergeLines(List<string> summLines, string[] line)
         {
-            List<string> summLines = new List<string>();
-            summLines.AddRange(line1);
-            bool haveSame;
-
-            for (int i = 0; i < line2.Length; i++)
+            for (int i = 0; i < line.Length; i++)
             {
-                haveSame = false;
-
-                for (int j = 0; j < line1.Length; j++)
+                if (!summLines.Contains(line[i]))
                 {
-                    if (line2[i] == line1[j])
-                    {
-                        haveSame = true;
-                    }
-                }
-
-                if (!haveSame)
-                {
-                    summLines.Add(line2[i]);
+                    summLines.Add(line[i]);
                 }
             }
-
-            return summLines;
         }
 
-        static void printArray(string[] array)
+        static void PrintArray(string[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -53,7 +40,7 @@ namespace CSHomeWork1
             Console.WriteLine();
         }
 
-        static void printArray(List<string> list)
+        static void PrintArray(List<string> list)
         {
             for (int i = 0; i < list.Count; i++)
             {
