@@ -20,7 +20,7 @@ namespace CSHomeWork1
                 Console.Clear();
                 Console.WriteLine($"{CommandAddDosier} - добавить досье" +
                 $"\n{CommandRemoveDosier} - удалить досье" +
-                $"\n{CommandShowAllDosier} - показать все досье +" +
+                $"\n{CommandShowAllDosier} - показать все досье" +
                 $"\n{commandExit} - выход");
                 clientInput = Console.ReadLine();
 
@@ -31,7 +31,7 @@ namespace CSHomeWork1
                         break;
 
                     case CommandRemoveDosier:
-                        RomoveDossier(dossier);
+                        RemoveDossier(dossier);
                         break;
 
                     case CommandShowAllDosier:
@@ -50,8 +50,6 @@ namespace CSHomeWork1
             Console.Clear();
             Console.Write("Введите инициалы нового работника: ");
             string initialsOfWorker = Console.ReadLine();
-            Console.Write("Введите должность нового работника: ");
-            string postOfWorker = Console.ReadLine();
 
             if (dossier.ContainsKey(initialsOfWorker))
             {
@@ -60,16 +58,27 @@ namespace CSHomeWork1
             }
             else
             {
+                Console.Write("Введите должность нового работника: ");
+                string postOfWorker = Console.ReadLine();
                 dossier.Add(initialsOfWorker, postOfWorker);
             }
         }
 
-        static void RomoveDossier(Dictionary<string, string> dossier)
+        static void RemoveDossier(Dictionary<string, string> dossier)
         {
             Console.Clear();
             Console.Write("Введите инициалы увольняемого работника: ");
             string initialsOfWorker = Console.ReadLine();
-            dossier.Remove(initialsOfWorker);
+
+            if (dossier.ContainsKey(initialsOfWorker))
+            {
+                dossier.Remove(initialsOfWorker);
+            }
+            else
+            {
+                Console.WriteLine("Таких инициалов нет.");
+                Console.ReadKey();
+            }
         }
 
         static void ShowAllDossier(Dictionary<string, string> dossier)
