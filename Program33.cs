@@ -37,6 +37,7 @@ namespace CSHomeWork1
                     case CommandShowAllDosier:
                         ShowAllDossier(dossier);
                         break;
+
                     default:
                         Console.WriteLine("Несуществуюшая команда.");
                         break;
