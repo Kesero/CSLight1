@@ -34,28 +34,23 @@ namespace CSHomeWork1
                 switch (key.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        playerDirectionX = 0;
-                        playerDirectionY = -1;
+                        playerDirectionX = 0; playerDirectionY = -1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        playerDirectionX = 0;
-                        playerDirectionY = 1;
+                        playerDirectionX = 0; playerDirectionY = 1;
                         break;
 
                     case ConsoleKey.LeftArrow:
-                        playerDirectionX = -1;
-                        playerDirectionY = 0;
+                        playerDirectionX = -1; playerDirectionY = 0;
                         break;
 
                     case ConsoleKey.RightArrow:
-                        playerDirectionX = 1;
-                        playerDirectionY = 0;
+                        playerDirectionX = 1; playerDirectionY = 0;
                         break;
 
                     default:
-                        playerDirectionX = 0;
-                        playerDirectionY = 0;
+                        playerDirectionX = 0; playerDirectionY = 0;
                         break;
 
                 }
