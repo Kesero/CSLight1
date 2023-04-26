@@ -8,6 +8,11 @@ namespace CSHomeWork1
     {
         static void Main(string[] args)
         {
+            const ConsoleKey KeyUpArrow = ConsoleKey.UpArrow;
+            const ConsoleKey KeyDownArrow = ConsoleKey.DownArrow;
+            const ConsoleKey KeyLeftArrow = ConsoleKey.LeftArrow;
+            const ConsoleKey KeyRightArrow = ConsoleKey.RightArrow;
+
             Console.CursorVisible = false;
             char[,] playMap = {
             { '#','#','#','#','#','#','#','#','#','#','#','#' },
@@ -33,19 +38,19 @@ namespace CSHomeWork1
 
                 switch (key.Key)
                 {
-                    case ConsoleKey.UpArrow:
+                    case KeyUpArrow:
                         playerDirectionX = 0; playerDirectionY = -1;
                         break;
 
-                    case ConsoleKey.DownArrow:
+                    case KeyDownArrow:
                         playerDirectionX = 0; playerDirectionY = 1;
                         break;
 
-                    case ConsoleKey.LeftArrow:
+                    case KeyLeftArrow:
                         playerDirectionX = -1; playerDirectionY = 0;
                         break;
 
-                    case ConsoleKey.RightArrow:
+                    case KeyRightArrow:
                         playerDirectionX = 1; playerDirectionY = 0;
                         break;
 
@@ -55,7 +60,7 @@ namespace CSHomeWork1
 
                 }
 
-                MovePlayer(playerDirectionX, playerDirectionY, ref playMap, playerSymbol, ref playerPositionX, ref playerPositionY);
+                MovePlayer(playerDirectionX, playerDirectionY, playMap, playerSymbol, ref playerPositionX, ref playerPositionY);
             }
         }
 
@@ -79,7 +84,7 @@ namespace CSHomeWork1
             Console.SetCursorPosition(0, 0);
         }
 
-        public static void MovePlayer(int positionDirectionX, int positionDirectionY, ref char[,] playMap, char playerSymbol, ref int playerPositionX, ref int playerPositionY)
+        public static void MovePlayer(int positionDirectionX, int positionDirectionY, char[,] playMap, char playerSymbol, ref int playerPositionX, ref int playerPositionY)
         {
             char wallSymbol = '#';
             char voidSymbol = ' ';
