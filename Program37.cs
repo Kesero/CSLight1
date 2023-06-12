@@ -176,7 +176,6 @@ namespace CSHomeWork1
         public static void Ban()
         {
             Console.Clear();
-
             Console.Write("Введите id игрока: ");
 
             if (!int.TryParse(Console.ReadLine(), out int id))
